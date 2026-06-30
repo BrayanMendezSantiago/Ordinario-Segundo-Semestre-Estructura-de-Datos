@@ -1,0 +1,105 @@
+#ifndef ESESPESIALES_H
+#define ESESPESIALES_H
+
+#include <stdio.h>
+
+struct Persona;
+struct Alumno;
+
+int sonIgualesEsp(char *a, char *b)
+{
+    int i = 0;
+    while(a[i] != '\0' && b[i] != '\0'){
+        if(a[i] != b[i]) return 0;
+        i++;
+    }
+    return a[i] == b[i];
+}
+
+struct Persona* buscarPorMatricula(struct Persona *ptr, char *matricula)
+{
+    struct Persona *aux = ptr;
+    while(aux != NULL){
+        if(aux->PtrAlum != NULL && sonIgualesEsp(aux->PtrAlum->Matricula, matricula)){
+            return aux;
+        }
+        aux = aux->Ptrsig;
+    }
+    return NULL;
+}
+
+void modCalifPorParcial(struct Alumno *A)
+{
+    int parcial, i;
+    printf("Que parcial deseas modificar (1,2,3, u Ordinario=4)?: ");
+    scanf(" %d", &parcial);
+
+    if(parcial < 1 || parcial > 4){
+        printf("Parcial invalido.\n");
+        return;
+    }
+
+    for(i = 0; i < 5; i++){
+        printf("Materia %d - nueva calificacion: ", i+1);
+        scanf(" %f", &A->Calif[i][parcial-1]);
+
+        float promParciales = (A->Calif[i][0] + A->Calif[i][1] + A->Calif[i][2]) / 3;
+        A->Calif[i][4] = (promParciales * 0.50) + (A->Calif[i][3] * 0.50);
+    }
+    printf("Calificaciones actualizadas.\n");
+}
+
+void modCalifPorMateria(struct Alumno *A)
+{
+    int materia;
+    printf("Que materia deseas modificar (1-5)?: ");
+    scanf(" %d", &materia);
+
+    if(materia < 1 || materia > 5){
+        printf("Materia invalida.\n");
+        return;
+    }
+    materia--;
+
+    printf("Parcial 1: ");
+    scanf(" %f", &A->Calif[materia][0]);
+    printf("Parcial 2: ");
+    scanf(" %f", &A->Calif[materia][1]);
+    printf("Parcial 3: ");
+    scanf(" %f", &A->Calif[materia][2]);
+    printf("Ordinario: ");
+    scanf(" %f", &A->Calif[materia][3]);
+
+    float promParciales = (A->Calif[materia][0] + A->Calif[materia][1] + A->Calif[materia][2]) / 3;
+    A->Calif[materia][4] = (promParciales * 0.50) + (A->Calif[materia][3] * 0.50);
+
+    printf("Materia actualizada. Promedio final: %.2f\n", A->Calif[materia][4]);
+}
+
+void modDatosPersona(struct Persona *P)
+{
+    printf("Nuevo nombre: ");
+    scanf(" %49s", P->Nombre);
+    printf("Nueva edad: ");
+    scanf(" %d", &P->Edad);
+    printf("Nuevo genero (M/F): ");
+    scanf(" %c", &P->Genero);
+    printf("Nueva fecha de nacimiento (DDMMAAAA): ");
+    scanf(" %11s", P->Fn);
+    printf("Datos de la persona actualizados.\n");
+}
+
+void modDatosAlumno(struct Alumno *A)
+{
+    printf("Nueva matricula: ");
+    scanf(" %9s", A->Matricula);
+    printf("Nueva carrera: ");
+    scanf(" %10s", A->Carrera);
+    printf("Nuevo semestre: ");
+    scanf(" %d", &A->Semestre);
+    printf("Nuevo correo: ");
+    scanf(" %22s", A->Correo);
+    printf("Datos del alumno actualizados.\n");
+}
+
+#endif
