@@ -102,4 +102,43 @@ void modDatosAlumno(struct Alumno *A)
     printf("Datos del alumno actualizados.\n");
 }
 
+void menuModificarLogica(struct Persona *ptr)
+{
+    int Op5, Op6;
+    struct Persona *p;
+    char matricula[10];
+
+    do{
+        Op5 = menuModificar();
+        switch(Op5){
+        case 1: // Calificaciones de un alumno
+            printf("Ingresa la matricula: ");
+            scanf(" %9s", matricula);
+            p = buscarPorMatricula(ptr, matricula);
+            if(p == NULL){
+                printf("No se encontro esa matricula.\n");
+            } else {
+                Op6 = menuModificarCalif();
+                if(Op6 == 1) modCalifPorParcial(p->PtrAlum);
+                else if(Op6 == 2) modCalifPorMateria(p->PtrAlum);
+            }
+            break;
+        case 2: // Datos
+            printf("Ingresa la matricula: ");
+            scanf(" %9s", matricula);
+            p = buscarPorMatricula(ptr, matricula);
+            if(p == NULL){
+                printf("No se encontro esa matricula.\n");
+            } else {
+                Op6 = menuModificarDatos();
+                if(Op6 == 1) modDatosPersona(p);
+                else if(Op6 == 2) modDatosAlumno(p->PtrAlum);
+            }
+            break;
+        default:
+            break;
+        }
+    }while(Op5 != 3);
+}
+
 #endif
