@@ -95,6 +95,21 @@ int main(void){
                 break;
         case 4:
             
+             do{
+                Op4 = menuEspeciales();
+                switch (Op4)
+                {
+                case 1:
+                    menuModificarLogica(ptr);
+                    break;
+                default: break;
+                }
+            }while (Op4 != 2);
+            
+
+            break;
+        case 5:
+            
             printf("saliendo....");
 
             break;
@@ -106,3 +121,4 @@ int main(void){
     
     return 0;
 }
+
