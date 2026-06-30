@@ -42,7 +42,8 @@ int Altas(struct Persona **ptr)
 struct Persona* nuevaPersona(void)
 {
     struct Persona *P = (struct Persona*)malloc(sizeof(struct Persona));
-    if (P == NULL) return NULL;
+    if (P == NULL) 
+        return NULL;
 
     P->Nombre = (char*)malloc(50 * sizeof(char));
 
