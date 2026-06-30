@@ -6,15 +6,16 @@
 struct Alumno;
 struct Persona;
 
-//Compara datos
+/*Compara datosCompara dos cadenas de texto carácter por carácter para saber si son exactamente iguales.
+ Regresa 1 si son iguales y 0 si son diferentes.*/
 int sonIguales(char *a, char *b)
 {
-    int i = 0;
-    while(a[i] != '\0' && b[i] != '\0'){
-        if(a[i] != b[i]) return 0;
+    int i = 0;//Contador
+    while(a[i] != '\0' && b[i] != '\0'){//El ciclo se repite mientras ninguna de las dos cadenas haya llegado a su fin\0 es nulo
+        if(a[i] != b[i]) return 0;//compara el caracter i en todos los caracteres pera ver si son iguyales.
         i++;
     }
-    return a[i] == b[i];
+    return a[i] == b[i];// Resive 1 si son igules y 0n si no
 }
 
 void mostrarTodos(struct Persona *ptr);
@@ -57,7 +58,10 @@ void mostrarTodos(struct Persona *ptr)
 // 2. Mostrar por carrera
 void mostrarPorCarrera(struct Persona *ptr)
 {
-    if(ptr == NULL){ printf("No hay registros.\n"); return; }
+    if(ptr == NULL){ 
+    printf("No hay registros.\n"); 
+    return; 
+    }
     char carrera[20];
     printf("Ingresa la carrera: ");
     scanf(" %19s", carrera);
@@ -82,7 +86,10 @@ void mostrarPorCarrera(struct Persona *ptr)
 // 3. Mostrar por semestre
 void mostrarPorSemestre(struct Persona *ptr)
 {
-    if(ptr == NULL){ printf("No hay registros.\n"); return; }
+    if(ptr == NULL){
+    printf("No hay registros.\n");
+    return;
+    }
     int semestre;
     printf("Ingresa el semestre: ");
     scanf(" %d", &semestre);
@@ -107,7 +114,10 @@ void mostrarPorSemestre(struct Persona *ptr)
 // 4. Mostrar por carrera y semestre
 void mostrarPorCarreraYSemestre(struct Persona *ptr)
 {
-    if(ptr == NULL){ printf("No hay registros.\n"); return; }
+    if(ptr == NULL){
+    printf("No hay registros.\n"); 
+    return; 
+    }
     char carrera[20];
     int semestre;
     printf("Ingresa la carrera: ");
@@ -137,7 +147,10 @@ void mostrarPorCarreraYSemestre(struct Persona *ptr)
 // 5. Mostrar por nombre
 void mostrarPorNombre(struct Persona *ptr)
 {
-    if(ptr == NULL){ printf("No hay registros.\n"); return; }
+    if(ptr == NULL){ 
+    printf("No hay registros.\n");
+    return;
+    }
     char nombre[50];
     printf("Ingresa el nombre: ");
     scanf(" %49s", nombre);
@@ -166,7 +179,10 @@ void mostrarPorNombre(struct Persona *ptr)
 // 6. Mostrar por matricula
 void mostrarPorMatricula(struct Persona *ptr)
 {
-    if(ptr == NULL){ printf("No hay registros.\n"); return; }
+    if(ptr == NULL){
+    printf("No hay registros.\n");
+    return;
+    }
     char matricula[10];
     printf("Ingresa la matricula: ");
     scanf(" %9s", matricula);
